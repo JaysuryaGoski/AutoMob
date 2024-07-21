@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/bookingsuccess.css">
+    <script src="../js/main.js"></script>
+    <title>Booking Success | AutoMob-Mechanic</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve and display the booking information from sessionStorage
+            const name = sessionStorage.getItem('username');
+            const emailId = sessionStorage.getItem('emailId');
+            const phCode = sessionStorage.getItem('phCode');
+            const phNo = sessionStorage.getItem('phNo');
+            const selectService = sessionStorage.getItem('selectService');
+            const carMake = sessionStorage.getItem('carMake');
+            const carModel = sessionStorage.getItem('carModel');
+            const fuelType = sessionStorage.getItem('fuelType');
+            const appointmentDate = sessionStorage.getItem('appointmentDate');
+            const address = sessionStorage.getItem('address');
+
+            document.getElementById('bookingDetails').innerHTML = `
+                <p>Name: ${name}</p>
+                <p>Email: ${emailId}</p>
+                <p>Phone: ${phCode} ${phNo}</p>
+                <p>Service: ${selectService}</p>
+                <p>Car Make: ${carMake}</p>
+                <p>Car Model: ${carModel}</p>
+                <p>Fuel Type: ${fuelType}</p>
+                <p>Appointment Date: ${appointmentDate}</p>
+                <p>Address: ${address}</p>
+            `;
+
+            setTimeout(function() {
+                const rating = prompt('Please provide a rating for our service (1-5):');
+                if (rating) {
+                    let message = '';
+                    if (rating >= 1 && rating <= 5) {
+                        message = `Thank you for your rating of ${rating}! We appreciate your feedback.`;
+                    } else {
+                        message = 'Invalid rating. Please provide a number between 1 and 5.';
+                    }
+                    document.getElementById('ratingMessage').textContent = message;
+                }
+            }, 10000);
+        });
+
+        function logout() {
+            alert('Logged out successfully');
+            sessionStorage.clear();
+            window.location.assign('home.html');
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <b><a href="./home.html">AutoMob-Mechanic</a></b>
+        <nav>
+            <span id="name"></span>
+            <a href="./home.html">Home</a> |
+            <a href="./services.html">Services</a> |
+            <a href="./booking.html">Booking</a> |
+            <a href="#" id="logout" onclick="logout()">Logout | </a>
+            <a href="mailto:contact@automob.co.in">contact@automob.co.in &#9993;</a> |
+            <a>999-999-9999 &#9743;</a>
+        </nav>
+    </header>
+    <main>
+        <img src="../images/shutterstock_1218932152.jpg" width="500" height="250">
+        <h2>Thanks for booking our service <span>&#128077;</span></h2>
+        <p>We will get back to you soon with the details via email/phone.</p>
+        <div id="bookingDetails"></div>
+        <p id="ratingMessage" style="margin-top: 20px; font-weight: bold;"></p>
+    </main>
+    <footer>
+        <span>Copyright &copy; 2020 AutoMob-Mechanic.</span>&nbsp;
+        <span>All Rights Reserved.</span>
+    </footer>
+</body>
+
+</html>
